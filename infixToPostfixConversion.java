@@ -1,36 +1,76 @@
 import java.util.Stack;
-
+import java.util.Scanner;
 public class infixToPostfixConversion {
-private static int getPrecedence(char op)
-{
- /**
-  *  Determines the precedence of an operator
-  * @param op The operator character
-  *  @return an integer representing the precedence..
-  */
-    switch (op){
-        case '+':
+
+    // Determines precedence of operators
+    private static int getPrecedence(char op) {
+        switch (op) {
+            case '+':
             case '-':
-                return 1; // Lowest precedence : Addition and Subtraction
-
-        case '*':
+                return 1; // Lowest precedence
+            case '*':
             case '/':
-                return 2; // Medium precedence: Multiplication and Division
-
-        case '^':
-             case '$':
-                return 3; // Highest precedence : Exponentiation and Dollar sign
-
-       default:
-        return 0;
+                return 2; // Medium precedence
+            case '^':
+            case '$':
+                return 3; // Highest precedence
+            default:
+                return 0;
+        }
     }
-}
-public static String convertToPostfix(String infixExpression)
-{
-   // 1. Create a StringBuilder to build the final postfix expression
-   StringBuilder postfixResult = new StringBuilder();
 
-   // 2. Create a stack to hold the operators and parenthesis
-   Stack
-}
+    // Converts infix expression to postfix
+    public static String convertToPostFix(String infixExpression) {
+        StringBuilder postFixResult = new StringBuilder();
+        Stack<Character> operatorStack = new Stack<>();
+
+        for (int i = 0; i < infixExpression.length(); i++) {
+            char token = infixExpression.charAt(i);
+
+            // Ignore spaces
+            if (Character.isWhitespace(token)) {
+                continue;
+            }
+
+            // Case 1: Operand → directly append
+            if (Character.isLetterOrDigit(token)) {
+                postFixResult.append(token);
+            } // Case 2: Opening parenthesis → push
+            else if (token == '(') {
+                operatorStack.push(token);
+            } // Case 3: Closing parenthesis → pop until '('
+            else if (token == ')') {
+                while (!operatorStack.isEmpty() && operatorStack.peek() != '(') {
+                    postFixResult.append(operatorStack.pop());
+                }
+                if (!operatorStack.isEmpty() && operatorStack.peek() == '(') {
+                    operatorStack.pop(); // discard '('
+                }
+            } // Case 4: Operator
+            else {
+                while (!operatorStack.isEmpty()
+                        && getPrecedence(operatorStack.peek()) >= getPrecedence(token)) {
+                    postFixResult.append(operatorStack.pop());
+                }
+                operatorStack.push(token);
+            }
+        }
+
+        // Pop remaining operators
+        while (!operatorStack.isEmpty()) {
+            postFixResult.append(operatorStack.pop());
+        }
+
+        return postFixResult.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the infix Expression");
+        String infix = sc.nextLine();
+        System.out.println("Infix: " + infix);
+        System.out.println("Postfix: " + convertToPostFix(infix).toUpperCase());
+        sc.close();
+    }
+
 }
