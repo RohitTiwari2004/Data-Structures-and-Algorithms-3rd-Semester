@@ -1,4 +1,5 @@
-public class LinearQueueImplementation {
+import java.util.Scanner;
+public class LinearQueueImplementationbyUserInput {
 
     static int N = 10; // Maximum size of a queue
     static int [] queue = new int [N];
@@ -60,34 +61,66 @@ public class LinearQueueImplementation {
  }
 System.out.println(ITEM + " is removed from queue");
 }
-// Display method to visualize queue....
+//Implementing display method...
 public static void display()
 {
     if(isEmpty())
     {
         System.out.println("Queue is empty");
     }
-    if(isFull()){
-        System.out.println("Queue is full");
-    }
-    System.out.print("Queue elements:");
-    for(int i=F;i<=R;i++)
+    System.out.println("Queue elements:");
+    for(int i=F; i<=R;i++)
     {
-        System.out.println(queue[i] + "");
+        System.out.print(queue[i] + "");
     }
     System.out.println();
 }
-//Main Method ....
-public static void main (String [] args)
+public static void main(String [] args)
 {
-    enqueue(20);
-    enqueue(36);
-    enqueue(59);
-    display();
-    dequeue();
-    display();
-    enqueue(88);
-    display();
+    //Create Menu for Enqueue
+ Scanner sc = new Scanner(System.in);
+ int choice;
+ int elements;
+
+ while(true)
+ {
+    System.out.println("----------Queue Menu----------");
+    System.out.println("1: Is Empty");
+    System.out.println("2: Is Full");
+    System.out.println("3: ENQUEUE (Insert)");
+    System.out.println("4: DEQUEUE (Deletion)");
+    System.out.println("5: Display element in Queue");
+    System.out.println("6: Exit");
+    choice = sc.nextInt();
+
+    switch(choice){
+        case 1:
+            System.out.println("Queue is empty" + isEmpty());
+            break;
+        case 2:
+            System.out.println("Queue is full" + isFull());
+        case 3:
+            System.out.println("Enter the elements to insert");
+             elements= sc.nextInt();
+            enqueue(elements);
+
+        case 4:
+         dequeue();
+         break;
+        case 5:
+            display();
+            break;
+        case 6:
+         System.out.println("Exiting....");
+         System.exit(0);
+         sc.close();
+         break;
+
+
+    }
+
+ }
+
 }
 
 }
