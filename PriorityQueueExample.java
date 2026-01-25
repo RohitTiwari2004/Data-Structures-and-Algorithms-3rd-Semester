@@ -1,9 +1,12 @@
 import java.util.PriorityQueue;
+import java.util.Collections;
 public class PriorityQueueExample {
     public static void main(String [] args)
     {
         //Default: Min-Priority Queue
-        PriorityQueue<Integer>pq = new PriorityQueue<>();
+        // PriorityQueue<Integer>pq = new PriorityQueue<>();
+        //Max Priority
+        PriorityQueue<Integer>pq = new PriorityQueue<>(Collections.reverseOrder());
 
         pq.add(10);
         pq.add(5);
