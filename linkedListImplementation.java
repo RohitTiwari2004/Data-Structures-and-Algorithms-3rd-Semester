@@ -20,6 +20,25 @@ public class linkedListImplementation {
        head = newNode;
        System.out.println("Element inserted at the beginning");
     }
+    public void insertAtLast(int element)
+    {
+        Node newNode = new Node(element);
+        newNode.next = null;
+
+        if(head == null)
+        {
+            head = newNode;
+            return;
+        }
+        Node temp = head;
+        while(temp.next!=null)
+        {
+            temp = temp.next;
+        }
+        temp.next = newNode;
+        System.out.println("Element inserted at the end:");
+        return;
+    }
     public  void traverse()
     {
         if(head == null)
@@ -59,6 +78,11 @@ public class linkedListImplementation {
           case 1:
             System.out.println("Enter elements");
             linkedlist.insertAtBeginning(sc.nextInt());
+            break;
+
+          case 2:
+            System.out.println("Enter the element that you want to insert at the end");
+            linkedlist.insertAtLast(sc.nextInt());
             break;
 
           case 3:
