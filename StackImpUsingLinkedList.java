@@ -14,7 +14,7 @@ public class StackImpUsingLinkedList {
   //Algorithm for PUSH Operation
   public void push(int element)
   {
-     Node newNode = new Node(20);
+     Node newNode = new Node(element);
 
      //New Node points to the current top
       newNode.next = top;
@@ -38,8 +38,12 @@ public class StackImpUsingLinkedList {
   {
     StackImpUsingLinkedList stack = new StackImpUsingLinkedList();
     stack.push(50);
+    stack.push(90);
+    stack.push(78);
 
     int poppedElement = stack.pop();
     System.out.println("Popped element is:" +poppedElement);
+    int poppedElement2 = stack.pop();
+    System.out.println("Popped Element is :" +poppedElement2);
   }
 }
