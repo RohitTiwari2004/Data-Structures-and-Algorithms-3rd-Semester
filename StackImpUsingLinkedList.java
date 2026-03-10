@@ -34,6 +34,35 @@ public class StackImpUsingLinkedList {
     top = top.next;  //Top moves to next node address
     return element;
   }
+
+  //Peek operation
+  public int peek()
+  {
+    if(top==null)
+    {
+        System.out.println("Stack is empty ! Stack Underflow");
+        return -1;
+    }
+    return top.data;
+
+  }
+  //Display operation ...
+  public void display()
+  {
+    if(top==null)
+    {
+        System.out.println("Stack is empty !! Stack Underflow");
+        return;
+    }
+    System.out.print("The elements on the stack are ");
+    while(top!= null)
+    {
+        System.out.println(top.data + " ");
+        top = top.next;
+    }
+    System.out.println();
+
+  }
   public static void main(String [] args)
   {
     StackImpUsingLinkedList stack = new StackImpUsingLinkedList();
@@ -45,5 +74,7 @@ public class StackImpUsingLinkedList {
     System.out.println("Popped element is:" +poppedElement);
     int poppedElement2 = stack.pop();
     System.out.println("Popped Element is :" +poppedElement2);
+
+    stack.display();
   }
 }
